@@ -1,0 +1,70 @@
+Main: gestione della partita.
+-----------------------------------------------------------------------------------------------------------------------------------
+NEW
+Coordinate (forse in inglese è coordinates): classe che rappresenta le coordinate (posizioni all'interno di un Battlefield).
+    * Function member:
+        - char x()
+        - int y()
+    * Costruttori:
+        - Coordinate(char[] p) // oppure Coordinate(string p)
+    * Data member:
+        - char x // indice di riga
+        - int y // indice di colonna
+    (Per le x si potrebbe usare un'enumerazione al posto di uun char)
+    * Helper function:
+        - vector<Coordinate> generate_inline_positions(Coordinate from, Coordinate to)  // controlla che non siano diagonali, se
+                                                                                        // lo sono torna vettore vuoto.
+                                                                                        // Utile per calcolare le posizioni che vanno
+                                                                                        // dalla prua al perno.
+-----------------------------------------------------------------------------------------------------------------------------------
+Naval unit: classe astratta che rappresenta un'unità navale.
+    * Function member:
+        - bool is_alive() // torna true se la barca è viva
+        - void restore() // ripristina la vita della nave
+        - void decrease_life() // hp-1
+        - void action(Battlefield di appartenenza, Battlefield nemico) (virtuale pura)
+NEW     - char type() // torna il carattere associato alla nave (C, E, S)
+        - vector<Coordinate> get_positions() // torna un vettore contenente le coordinate occupate dalla nave
+        - Coordinate get_cm() // torna il centro di massa della nave
+        - int size() // torna la dimensione della nave
+    * Data member:
+        - int hp // punti vita nave
+        - int size // dimensione nave
+        - vector<Coordinate> positions
+        - Coordinate cm // centro di massa
+        - char type
+-----------------------------------------------------------------------------------------------------------------------------------
+BattleShip, SupportVessel, Submarine: classi che estendono NavalUnit.
+    Basta scrivere il costruttore per ciascuna e implementare la funzione action().
+-----------------------------------------------------------------------------------------------------------------------------------
+Battlefield: classe che rappresenta il campo di battaglia.
+    * Function member:
+NEW     - void remove_unit(NavalUnit* n) // rimuove la nave graficamente e dalla lista lst
+NEW     - void clean_attack() // pulisce la griglia d'attacco (vecchio clean_screen)
+        - void set_mark(Coordinate p, char c) // per scrivere nella griglia d'attacco
+        - void set_hit(Coordinate p) // scrive nella griglia di difesa (C -> c), decrementa la vita della nave
+        - bool check_position(Coordinate p) // torna true se nella posizione passata c'è un pezzo di una nave (per sottomarino e corazzata)
+        - void move(NavalUnit* u) // sposta la nave (utile per sottomarino e supporto)
+        - bool is_empty() // torna true se la lista lst è vuota (per determinare la sconfitta)
+NEW     - void insert(NavalUnit* u) // disegna graficamente la barca nella matrice e la inserisce nella lista (vecchio draw)
+NEW     - bool is_valid(vector<Coordinate> v) // controlla che tutte le posizioni siano interne e vuote
+NEW     - NavalUnit* get_unit(Coordinate p) // ritorna la nave scelta dal giocatore (la famosa funzione Porco Dio)
+    * Data member:
+        - char[12][12] attack // griglia attacco
+        - char[12][12] defence // griglia difesa
+        - list<NavalUnit*> lst // lista di puntatori a NavalUnit
+-----------------------------------------------------------------------------------------------------------------------------------
+NEW
+Player: classe astratta. (Per semplificare il main).
+    * Idee di funzioni:
+        - Coordinate ask_coordinate() = 0   // l'umano dovrà inserirle... cout << ...
+                                            // il computer le genera con il suo algoritmo
+        - Coordinate turn(il battlefield?) = 0 // l'umano dovrà inserirle (deve anche vedere le griglie a schermo
+                                // il computer le genera con il suo algoritmo
+-----------------------------------------------------------------------------------------------------------------------------------
+Computer, Human: classi che estendono Player.
+    In questo modo nel main possiamo usare due puntatori a oggetti
+    Player (Player* g1 e Player* g2) come abbiamo fatto per la lista
+    in battlefield. In questo modo dovremmo riuscire sfoltire il main.
+    In ogni caso il gioco in se viene gestito dal main...
+

@@ -1,0 +1,47 @@
+DA FARE:
+    Ultimo test macchina virtuale
+
+FATTI:
+    Le coordinate copite (C->c) non vengono aggiornate graficamente se muovo una nave
+
+    Se l'utente fornisce coordinate target che non provocvano nessuna azione, dove rifare il turno?
+
+    L'azione della support viene eseguita anche se non si sposta, questo perché la check_position() non controlla tutte le posizioni
+
+    Per support vassle: per controllare se la move è andata a buon fine la move diventa booleana
+
+    La nave supporto da problemi nell'azione
+
+    La battleship deve controllare se la la posizione della nave colpita è stata hittata prima di decrementargli la vita (controllo sulle coordinate if is hitted)
+
+    Da testare il remove unit di computer
+
+    Da controllare i casi in cui passo il cm all'azione del support e submarine (se l'azione viene eseguita o meno)
+
+    Human testare se inserisco coordinate in minuscolo
+
+    Risposta alla faq del sottomarino, roba con le X e le Y
+
+    Comandi speciali utente
+
+    Inizializzare cm e posizions delle barche
+
+    Finire di controllare i commenti: mancano quelli sulle navi
+
+    Migliorare output battlefield
+
+    CMake parametri di ottimiz (non so)
+
+    Da togliere i copy constructor alle classi che hanno puntatori tra le data member
+
+    Mettere i copy constructor e copy assign a default nelle altre
+
+    Dare un autore ai file
+
+    Foreward per rows[] è ok? (in teoria si)
+
+    File log partita human contro computer
+
+    Cambiare nomi dei battlefield b1 b2 in qualcosa del tipo mine, enemy
+
+    Random turno per iniziare (roba brutta)
