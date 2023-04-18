@@ -1,5 +1,5 @@
 # Battaglia Navale
-Si tratta di un esame universitario. La descrizione completa e dettagliata del gioco relaizzato e delle specifiche richieste si trova nel pdf (TODO: inserire il pdf).
+Si tratta di un esame universitario. La descrizione completa e dettagliata del gioco relaizzato e delle specifiche richieste si trova nel pdf in docs/Progetto Finale Battaglia navale.pdf
 
 ## Descrizione
 Abbiamo ideato il progetto basandoci sulla connessione tra diverse classi e sottoclassi;
